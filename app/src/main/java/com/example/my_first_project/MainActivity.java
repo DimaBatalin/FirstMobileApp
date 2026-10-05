@@ -1,13 +1,13 @@
 package com.example.my_first_project;
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -15,17 +15,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText editTextNum1;
-    private EditText editTextNum2;
-    private TextView textViewSign;
-    private TextView textViewResult;
-    private TextView testTextView;
-
-    private Button btnPlus;
-    private Button btnMinus;
-    private Button btnMultiply;
-    private Button btnDivide;
-    private Button btnClear;
+    private Button btn1;
+    private Button btn2;
+    private Button btn3;
+    private Button btn4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,76 +34,78 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        editTextNum1 = findViewById(R.id.editTextNumberDecimal);
-        editTextNum2 = findViewById(R.id.editTextNumberDecimal2);
-        textViewSign = findViewById(R.id.textViewSign);
-        textViewResult = findViewById(R.id.textViewResult);
-        testTextView = findViewById(R.id.testTextView);
+        btn1 = findViewById(R.id.btn1);
+        btn2 = findViewById(R.id.btn2);
+        btn3 = findViewById(R.id.btn3);
+        btn4 = findViewById(R.id.btn4);
 
-        btnPlus = findViewById(R.id.btnPlus);
-        btnMinus = findViewById(R.id.btnMinus);
-        btnMultiply = findViewById(R.id.btnMultiply);
-        btnDivide = findViewById(R.id.btnDivide);
-        btnClear = findViewById(R.id.btnClear);
+        btn1.setOnClickListener(v ->
+                Toast.makeText(MainActivity.this, "кнопка номер 1 нажата", Toast.LENGTH_SHORT).show()
+        );
 
-        btnPlus.setOnClickListener(v -> calculate('+'));
-        btnMinus.setOnClickListener(v -> calculate('-'));
-        btnMultiply.setOnClickListener(v -> calculate('*'));
-        btnDivide.setOnClickListener(v -> calculate('/'));
+        btn2.setOnClickListener(v ->
+                Toast.makeText(MainActivity.this, "кнопка номер 2 нажата", Toast.LENGTH_LONG).show()
+        );
 
-        btnClear.setOnClickListener(v -> clearAll());
+        btn3.setOnClickListener(v -> showDialog3());
+
+        // Кнопка 4: Диалоговое окно с множественным выбором (Тест)
+        btn4.setOnClickListener(v -> showDialogQuiz());
     }
 
-    private void calculate(char operation) {
-        textViewSign.setText(String.valueOf(operation));
+    private void showDialog3() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("кнопка 3")
+                .setIcon(R.drawable.test_icon)
+                .setMessage("Вы действительно хотите изменить цвет текста кнопок?")
+                .setPositiveButton("Да", (dialog, which) -> {
+                    // "Да" - цвет текста всех кнопок делает красным
+                    btn1.setTextColor(Color.RED);
+                    btn2.setTextColor(Color.RED);
+                    btn3.setTextColor(Color.RED);
+                    btn4.setTextColor(Color.RED);
+                    dialog.dismiss();
+                })
+                .setNegativeButton("Отмена", (dialog, which) -> {
+                    dialog.dismiss();
+                    Toast.makeText(MainActivity.this, "Окно закрыто", Toast.LENGTH_SHORT).show();
+                });
 
-        String str1 = editTextNum1.getText().toString().trim();
-        String str2 = editTextNum2.getText().toString().trim();
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
-        if (TextUtils.isEmpty(str1) || TextUtils.isEmpty(str2)) {
-            Toast.makeText(this, "Введите оба числа", Toast.LENGTH_SHORT).show();
-            return;
-        }
+    private void showDialogQuiz() {
+        String[] items = {"Заяц", "Волк", "Корова", "Тигр", "Олень"};
+        boolean[] correctAnswers = {true, false, true, false, true};
+        boolean[] selectedItems = new boolean[items.length];
 
-        try {
-            double num1 = Double.parseDouble(str1);
-            double num2 = Double.parseDouble(str2);
-            double result = 0;
-
-            switch (operation) {
-                case '+':
-                    result = num1 + num2;
-                    break;
-                case '-':
-                    result = num1 - num2;
-                    break;
-                case '*':
-                    result = num1 * num2;
-                    break;
-                case '/':
-                    if (num2 == 0) {
-                        Toast.makeText(this, "Деление на ноль невозможно!", Toast.LENGTH_SHORT).show();
-                        return;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Выберите травоядных животных:")
+                .setMultiChoiceItems(items, selectedItems, (dialog, which, isChecked) -> {
+                    selectedItems[which] = isChecked;
+                })
+                .setPositiveButton("Проверить", (dialog, which) -> {
+                    boolean isCorrect = true;
+                    for (int i = 0; i < items.length; i++) {
+                        if (selectedItems[i] != correctAnswers[i]) {
+                            isCorrect = false;
+                            break;
+                        }
                     }
-                    result = num1 / num2;
-                    break;
-            }
 
-            if (result == (long) result) {
-                textViewResult.setText("= " + (long) result);
-            } else {
-                textViewResult.setText("= " + result);
-            }
+                    if (isCorrect) {
+                        Toast.makeText(MainActivity.this, "Все верно!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        btn1.setVisibility(View.INVISIBLE);
+                        btn2.setVisibility(View.INVISIBLE);
+                        btn3.setVisibility(View.INVISIBLE);
+                        btn4.setVisibility(View.INVISIBLE);
+                    }
+                })
+                .setNegativeButton("Отмена", (dialog, which) -> dialog.dismiss());
 
-        } catch (NumberFormatException e) {
-            Toast.makeText(this, "Ошибка ввода числа", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void clearAll() {
-        editTextNum1.setText("");
-        editTextNum2.setText("");
-        textViewSign.setText("+");
-        textViewResult.setText("= 0");
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

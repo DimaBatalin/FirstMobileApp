@@ -4,134 +4,47 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <!-- Верхняя строка: Число1 ЗнакОперации Число2 = Результат -->
-    <LinearLayout
+    <Button
+        android:id="@+id/btn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="16dp"
-        android:orientation="horizontal">
+        android:layout_marginBottom="12dp"
+        android:text="Кнопка 1"
+        android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/editTextNumberDecimal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="15"
-            android:inputType="numberSigned|numberDecimal"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textViewSign"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:text="+"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/editTextNumberDecimal2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="48"
-            android:inputType="numberSigned|numberDecimal"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textViewResult"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="8dp"
-            android:text="= 63.0"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <GridLayout
+    <Button
+        android:id="@+id/btn2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="3"
-        android:rowCount="3">
+        android:layout_marginBottom="12dp"
+        android:text="Кнопка 2"
+        android:textSize="18sp" />
 
-        <Button
-            android:id="@+id/btnPlus"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_rowSpan="2"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:layout_margin="4dp"
-            android:text="+"
-            android:textSize="24sp" />
+    <Button
+        android:id="@+id/btn3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="Кнопка 3"
+        android:textSize="18sp" />
 
-        <Button
-            android:id="@+id/btnMinus"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:layout_margin="4dp"
-            android:text="-"
-            android:textSize="24sp" />
-
-        <Button
-            android:id="@+id/btnDivide"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:layout_margin="4dp"
-            android:text="/"
-            android:textSize="24sp" />
-
-        <Button
-            android:id="@+id/btnMultiply"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:layout_columnSpan="2"
-            android:layout_columnWeight="2"
-            android:layout_gravity="fill"
-            android:layout_margin="4dp"
-            android:text="*"
-            android:textSize="24sp" />
-
-        <Button
-            android:id="@+id/btnClear"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_row="2"
-            android:layout_column="0"
-            android:layout_columnSpan="3"
-            android:layout_columnWeight="3"
-            android:layout_gravity="fill"
-            android:layout_margin="4dp"
-            android:text="С"
-            android:textSize="24sp" />
-
-    </GridLayout>
+    <Button
+        android:id="@+id/btn4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Кнопка 4"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/testTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:gravity="center"
         android:text="Баталин Дмитрий Андреевич Т-433901-НТ"
         android:textSize="16sp" />

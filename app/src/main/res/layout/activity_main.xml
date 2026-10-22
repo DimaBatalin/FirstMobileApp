@@ -10,35 +10,35 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btn1"
+        android:id="@+id/btnMorning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:text="Кнопка 1"
+        android:text="Утро"
         android:textSize="18sp" />
 
     <Button
-        android:id="@+id/btn2"
+        android:id="@+id/btnDay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:text="Кнопка 2"
+        android:text="День"
         android:textSize="18sp" />
 
     <Button
-        android:id="@+id/btn3"
+        android:id="@+id/btnEvening"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:text="Кнопка 3"
+        android:text="Вечер"
         android:textSize="18sp" />
 
     <Button
-        android:id="@+id/btn4"
+        android:id="@+id/btnNight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="Кнопка 4"
+        android:text="Ночь"
         android:textSize="18sp" />
 
     <TextView

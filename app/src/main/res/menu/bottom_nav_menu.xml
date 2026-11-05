@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_feedback"
+        android:icon="@drawable/ic_feedback"
+        android:title="@string/nav_feedback" />
+    <item
+        android:id="@+id/nav_test"
+        android:icon="@drawable/ic_quiz"
+        android:title="@string/nav_test" />
+    <item
+        android:id="@+id/nav_notifications"
+        android:icon="@drawable/ic_bell"
+        android:title="@string/nav_notifications" />
+</menu>
